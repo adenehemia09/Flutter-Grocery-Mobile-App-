@@ -1,11 +1,20 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:intl/intl.dart';
 
 class MyCard extends StatelessWidget {
-  const MyCard({Key? key}) : super(key: key);
+  final String image;
+  final String title;
+  final String type;
+  final double price;
+  const MyCard({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.type,
+    required this.price,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +22,6 @@ class MyCard extends StatelessWidget {
         NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'USD');
     return Center(
       child: Container(
-        //height: 120,
         margin: const EdgeInsets.only(
           top: 15,
         ),
@@ -27,14 +35,13 @@ class MyCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            //Image
             Container(
               height: 100,
               width: 100,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    "https://firebasestorage.googleapis.com/v0/b/grocery-apps-mobile.appspot.com/o/Fruits%2Fstrawberry-isolated-white-background-close-up.jpg?alt=media&token=13c791a9-d03e-45b6-b4e4-4516e34ed2ed",
+                    image,
                   ),
                 ),
               ),
@@ -45,14 +52,14 @@ class MyCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Strawberry",
+                    title,
                     style: blackTextStyle.copyWith(
                       fontWeight: bold,
                       fontSize: 17,
                     ),
                   ),
                   Text(
-                    "Fruits",
+                    type,
                     style: blackTextStyle.copyWith(
                       fontWeight: medium,
                     ),
@@ -60,7 +67,7 @@ class MyCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${format.currencySymbol}4.55",
+                        "${format.currencySymbol} ${price}",
                         style: blackTextStyle.copyWith(
                           fontWeight: bold,
                         ),

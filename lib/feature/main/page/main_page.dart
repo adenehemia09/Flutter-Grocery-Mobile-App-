@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
-import 'package:grocery_mobile_app/feature/favourite/page/favourite_page.dart';
+import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
 import 'package:grocery_mobile_app/feature/home/page/home_page.dart';
-import 'package:grocery_mobile_app/feature/main/page_cubit.dart';
-import 'package:grocery_mobile_app/feature/notification/notification_page.dart';
-import 'package:grocery_mobile_app/feature/user/profile_page.dart';
+import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
+import 'package:grocery_mobile_app/feature/my%20card/page/favourite_page.dart';
+import 'package:grocery_mobile_app/feature/notification/page/notification_page.dart';
+import 'package:grocery_mobile_app/feature/user/page/profile_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -39,13 +40,16 @@ class _MainPageState extends State<MainPage> {
 
     Widget buttonNavigationBarItem(
       String title,
-      int _index,
+      int index,
       String imageURL,
       IconData icon,
     ) {
       return GestureDetector(
         onTap: () {
-          context.read<PageCubit>().setPage(_index);
+          context.read<PageCubit>().setPage(index);
+          if (index == 0) {
+            context.read<GridCubit>().setPage(0);
+          }
         },
         child: SizedBox(
           height: 50,
@@ -55,19 +59,20 @@ class _MainPageState extends State<MainPage> {
               const SizedBox(),
               Icon(
                 icon,
-                color: context.watch<PageCubit>().state == _index
+                color: context.watch<PageCubit>().state == index
                     ? keyGreenColor
                     : keyGrayColor,
               ),
-              context.read<PageCubit>().state == _index
+              context.read<PageCubit>().state == index
                   ? Text(
                       title,
                       style: blackTextStyle.copyWith(
-                          fontWeight: context.read<PageCubit>().state == _index
-                              ? bold
-                              : regular,
-                          fontSize: 11,
-                          color: keyGreenColor),
+                        fontWeight: context.read<PageCubit>().state == index
+                            ? bold
+                            : regular,
+                        fontSize: 11,
+                        color: keyGreenColor,
+                      ),
                     )
                   : const SizedBox(),
             ],

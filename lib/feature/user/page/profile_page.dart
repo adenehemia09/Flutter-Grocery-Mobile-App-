@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
-import 'package:grocery_mobile_app/feature/user/backround_profile.dart';
-import 'package:grocery_mobile_app/feature/user/foto_profile.dart';
+import 'package:grocery_mobile_app/feature/user/widget/backround_profile.dart';
+import 'package:grocery_mobile_app/feature/user/widget/foto_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);

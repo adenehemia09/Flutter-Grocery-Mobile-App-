@@ -2,12 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
+import 'package:grocery_mobile_app/data/category_model.dart';
 import 'package:grocery_mobile_app/feature/detitle/detitle_cart.dart';
-import 'package:grocery_mobile_app/model/vegetable_model.dart';
+
 import 'package:intl/intl.dart';
 
 class CardListCategory extends StatelessWidget {
-  final VegetableModel vegetableModel;
+  final CategoryModel vegetableModel;
   const CardListCategory({Key? key, required this.vegetableModel})
       : super(key: key);
 
@@ -52,18 +53,21 @@ class CardListCategory extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
-                    vegetableModel.title,
-                    style: blackTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: bold,
+                  Expanded(
+                    child: Text(
+                      vegetableModel.title,
+                      style: blackTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "30mm",
+                        "${vegetableModel.width}mm",
                         style: grayTextStyle.copyWith(
                           fontSize: 12,
                         ),
@@ -85,7 +89,7 @@ class CardListCategory extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${format.currencySymbol}4.55",
+                        "${format.currencySymbol} ${vegetableModel.price}",
                         style: blackTextStyle.copyWith(
                           fontWeight: bold,
                         ),
