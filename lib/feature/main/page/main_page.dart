@@ -92,10 +92,11 @@ class _MainPageState extends State<MainPage> {
             Icons.home,
           ),
           buttonNavigationBarItem(
-              "My Card",
-              1,
-              "https://firebasestorage.googleapis.com/v0/b/start-up-it-pmw.appspot.com/o/Video%20Playlist.png?alt=media&token=671c47bb-dba4-4276-8383-2821ffdee217",
-              Icons.favorite),
+            "My Card",
+            1,
+            "https://firebasestorage.googleapis.com/v0/b/start-up-it-pmw.appspot.com/o/Video%20Playlist.png?alt=media&token=671c47bb-dba4-4276-8383-2821ffdee217",
+            Icons.shopping_bag,
+          ),
           buttonNavigationBarItem(
             "Notifications",
             2,

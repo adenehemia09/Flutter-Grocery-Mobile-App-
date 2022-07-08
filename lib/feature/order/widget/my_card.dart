@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
+import 'package:grocery_mobile_app/data/category_model.dart';
 import 'package:intl/intl.dart';
 
 class MyCard extends StatelessWidget {
@@ -8,12 +9,14 @@ class MyCard extends StatelessWidget {
   final String title;
   final String type;
   final double price;
+  final int count;
   const MyCard({
     Key? key,
     required this.image,
     required this.title,
     required this.type,
     required this.price,
+    required this.count,
   }) : super(key: key);
 
   @override
@@ -77,7 +80,7 @@ class MyCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "/1Kg",
+                        "/${count}Kg",
                         style: grayTextStyle.copyWith(
                           fontWeight: medium,
                           fontSize: 12,

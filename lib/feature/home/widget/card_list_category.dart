@@ -109,22 +109,67 @@ class CardListCategory extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topRight,
-            child: Container(
-              margin: const EdgeInsets.only(
-                top: 7,
-                right: 7,
-              ),
-              height: 27,
-              width: 27,
-              decoration: BoxDecoration(
-                color: keyGreenColor,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.add,
-                  color: keyWhiteColor,
-                  size: 17,
+            child: GestureDetector(
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(seconds: 2, microseconds: 500),
+                    backgroundColor: keyTransparentColor,
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    content: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.77,
+                      ),
+                      padding: const EdgeInsets.all(
+                        14,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(
+                          0xffE2F4E9,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.check_circle,
+                              color: keyGreenColor,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Successfully added item to cart",
+                              style: blackTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(
+                  top: 7,
+                  right: 7,
+                ),
+                height: 27,
+                width: 27,
+                decoration: BoxDecoration(
+                  color: keyGreenColor,
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.add,
+                    color: keyWhiteColor,
+                    size: 17,
+                  ),
                 ),
               ),
             ),

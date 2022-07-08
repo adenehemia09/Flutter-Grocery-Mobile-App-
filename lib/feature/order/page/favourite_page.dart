@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
+import 'package:grocery_mobile_app/feature/order/widget/calculate_price.dart';
 import 'package:grocery_mobile_app/feature/order/widget/my_card.dart';
 
 class FavouritePage extends StatelessWidget {
@@ -68,19 +69,27 @@ class FavouritePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Column(
-                      children: myCardList.map(
-                        (e) {
-                          return MyCard(
-                            image: e.image,
-                            title: e.title,
-                            type: e.type,
-                            price: e.price,
-                          );
-                        },
-                      ).toList(),
-                    ),
-                    const SizedBox(
-                      height: 20,
+                      children: [
+                        Column(
+                          children: myCardList.map(
+                            (e) {
+                              return MyCard(
+                                image: e.image,
+                                title: e.title,
+                                type: e.type,
+                                price: e.price,
+                                count: e.count,
+                              );
+                            },
+                          ).toList(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        myCardList.isEmpty
+                            ? const SizedBox()
+                            : const CalculatePrice(),
+                      ],
                     ),
                   ],
                 ),

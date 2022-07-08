@@ -11,44 +11,36 @@ class SearchBar extends StatelessWidget {
         left: 5,
         right: 5,
       ),
-      // margin: const EdgeInsets.only(
-      //   top: 121,
-      //   left: 24,
-      //   right: 24,
-      // ),
       height: 45,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        // border: Border.all(
-        //   color: borderColor,
-        // ),
         color: keyWhiteColor,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Center(
         child: TextFormField(
-          // controller: controller,
           cursorColor: keyBlackColor,
           obscureText: false,
           decoration: InputDecoration(
-              filled: true,
-              hintText: 'Search...',
-              hintStyle: const TextStyle(
-                fontSize: 14,
+            filled: true,
+            hintText: 'Search...',
+            hintStyle: const TextStyle(
+              fontSize: 14,
+            ),
+            fillColor: keyTransparentColor,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: keyTransparentColor,
               ),
-              fillColor: keyTransparentColor,
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: keyTransparentColor,
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: keyTransparentColor),
-              ),
-              suffixIcon: const Icon(
-                Icons.search,
-                color: Color(0xff5D5D5D),
-              )),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: keyTransparentColor),
+            ),
+            suffixIcon: const Icon(
+              Icons.search,
+              color: Color(0xff5D5D5D),
+            ),
+          ),
         ),
       ),
     );

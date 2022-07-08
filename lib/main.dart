@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery_mobile_app/feature/detitle/controller/count_item_cubit.dart';
+import 'package:grocery_mobile_app/feature/detitle/controller/count_price_cubit.dart';
 import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
 import 'package:grocery_mobile_app/feature/splash/page/splash_page.dart';
@@ -20,6 +22,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GridCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CountItemCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CountPriceCubit(),
         ),
       ],
       child: MaterialApp(
