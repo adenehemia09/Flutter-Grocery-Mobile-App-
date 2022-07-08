@@ -16,21 +16,25 @@ class NotificationPage extends StatelessWidget {
         backgroundColor: keyGreenColor,
         title: Text(
           "Notifications",
-          style: whiteTextStyle.copyWith(fontSize: 17),
+          style: whiteTextStyle.copyWith(
+            fontSize: 17,
+          ),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: notificationModelList.map((e) {
-            return CardNotif(
-              messageType: e.messageType,
-              title: e.title,
-              message: e.message,
-              date: e.date,
-              icon: e.icon,
-            );
-          }).toList(),
+          children: notificationModelList.map(
+            (e) {
+              return CardNotif(
+                messageType: e.messageType,
+                title: e.title,
+                message: e.message,
+                date: e.date,
+                icon: e.icon,
+              );
+            },
+          ).toList(),
         ),
       ),
     );

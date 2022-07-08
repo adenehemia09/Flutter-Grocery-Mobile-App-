@@ -15,8 +15,7 @@ class BreadGrid extends StatelessWidget {
       crossAxisCount: 2,
       crossAxisSpacing: 24,
       mainAxisSpacing: 17,
-      childAspectRatio:
-          ((MediaQuery.of(context).size.width * 0.5) - 24 - 10) / 175,
+      childAspectRatio: ((MediaQuery.of(context).size.width * 0.5) - 34) / 175,
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       children: breadModelList.map(

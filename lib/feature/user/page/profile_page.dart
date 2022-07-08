@@ -50,7 +50,7 @@ class ProfilePage extends StatelessWidget {
               Icons.arrow_forward_ios,
               color: keyGrayColor,
               size: 17,
-            )
+            ),
           ],
         ),
       );
@@ -62,8 +62,12 @@ class ProfilePage extends StatelessWidget {
         decoration: BoxDecoration(
           color: bacgroundColor,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
+            topLeft: Radius.circular(
+              25,
+            ),
+            topRight: Radius.circular(
+              25,
+            ),
           ),
         ),
         child: Column(
@@ -86,22 +90,42 @@ class ProfilePage extends StatelessWidget {
               height: 40,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 15),
-              child: titleProfile('Account'),
+              margin: const EdgeInsets.only(
+                left: 15,
+              ),
+              child: titleProfile(
+                'Account',
+              ),
             ),
-            listEditAccount('Edit profile'),
-            listEditAccount('Your Orders'),
-            listEditAccount('Help'),
+            listEditAccount(
+              'Edit profile',
+            ),
+            listEditAccount(
+              'Your Orders',
+            ),
+            listEditAccount(
+              'Help',
+            ),
             const SizedBox(
               height: 40,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 15),
-              child: titleProfile('General'),
+              margin: const EdgeInsets.only(
+                left: 15,
+              ),
+              child: titleProfile(
+                'General',
+              ),
             ),
-            listEditAccount('Privacy & Policy'),
-            listEditAccount('Term of Service'),
-            listEditAccount('Rate App'),
+            listEditAccount(
+              'Privacy & Policy',
+            ),
+            listEditAccount(
+              'Term of Service',
+            ),
+            listEditAccount(
+              'Rate App',
+            ),
             const SizedBox(
               height: 50,
             ),
@@ -126,18 +150,22 @@ class ProfilePage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: <Widget>[
+            children: [
               Stack(
                 children: [
                   const BackroundProfile(),
                   Stack(
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(top: 110),
+                        margin: const EdgeInsets.only(
+                          top: 110,
+                        ),
                         child: content(),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(top: 60),
+                        margin: const EdgeInsets.only(
+                          top: 60,
+                        ),
                         child: const FotoProfile(),
                       ),
                     ],

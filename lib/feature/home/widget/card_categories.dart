@@ -9,14 +9,14 @@ class CardCategories extends StatelessWidget {
   final String image;
   final Color color;
   final Color tColor;
-  const CardCategories(
-      {Key? key,
-      required this.title,
-      required this.image,
-      required this.color,
-      required this.tColor,
-      required this.indext})
-      : super(key: key);
+  const CardCategories({
+    Key? key,
+    required this.title,
+    required this.image,
+    required this.color,
+    required this.tColor,
+    required this.indext,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +25,17 @@ class CardCategories extends StatelessWidget {
         context.read<GridCubit>().setPage(indext);
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 12),
+        margin: const EdgeInsets.only(
+          right: 12,
+        ),
         height: 45,
         decoration: BoxDecoration(
           color: context.watch<GridCubit>().state == indext
               ? keyGreenColor
               : keyWhiteColor,
-          borderRadius: BorderRadius.circular(45 / 2),
+          borderRadius: BorderRadius.circular(
+            45 / 2,
+          ),
         ),
         child: Row(
           children: [

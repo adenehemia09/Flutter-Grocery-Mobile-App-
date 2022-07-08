@@ -34,7 +34,11 @@ class HomePage extends StatelessWidget {
 
     Widget appBar() {
       return Padding(
-        padding: const EdgeInsets.only(top: 20, left: 24, right: 24),
+        padding: const EdgeInsets.only(
+          top: 20,
+          left: 24,
+          right: 24,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -114,7 +118,9 @@ class HomePage extends StatelessWidget {
               height: 45,
               width: 80,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(
+                  25,
+                ),
                 color: keyGreenColor,
               ),
               child: Center(
@@ -131,7 +137,10 @@ class HomePage extends StatelessWidget {
 
     Widget title() {
       return Padding(
-        padding: const EdgeInsets.only(top: 20, left: 24),
+        padding: const EdgeInsets.only(
+          top: 20,
+          left: 24,
+        ),
         child: Text(
           "Categories",
           style: blackTextStyle.copyWith(
@@ -223,9 +232,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // App Bar
               appBar(),
-              // Shereche
               search(),
               title(),
               menuBar(),
@@ -244,13 +251,11 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-
               BlocBuilder<GridCubit, int>(
                 builder: (context, index) {
                   return buildGridViewList(index);
                 },
               ),
-
               const SizedBox(
                 height: 50,
               ),

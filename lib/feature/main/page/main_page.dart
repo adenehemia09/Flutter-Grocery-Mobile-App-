@@ -4,8 +4,8 @@ import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
 import 'package:grocery_mobile_app/feature/home/page/home_page.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
-import 'package:grocery_mobile_app/feature/my%20card/page/favourite_page.dart';
 import 'package:grocery_mobile_app/feature/notification/page/notification_page.dart';
+import 'package:grocery_mobile_app/feature/order/page/favourite_page.dart';
 import 'package:grocery_mobile_app/feature/user/page/profile_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -86,10 +86,11 @@ class _MainPageState extends State<MainPage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           buttonNavigationBarItem(
-              "Home",
-              0,
-              "https://firebasestorage.googleapis.com/v0/b/start-up-it-pmw.appspot.com/o/Home.png?alt=media&token=44bc7a73-0142-4adf-b2eb-546fab4149d3",
-              Icons.home),
+            "Home",
+            0,
+            "https://firebasestorage.googleapis.com/v0/b/start-up-it-pmw.appspot.com/o/Home.png?alt=media&token=44bc7a73-0142-4adf-b2eb-546fab4149d3",
+            Icons.home,
+          ),
           buttonNavigationBarItem(
               "My Card",
               1,

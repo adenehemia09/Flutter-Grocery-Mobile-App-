@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
-import 'package:grocery_mobile_app/feature/my%20card/widget/my_card.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
+import 'package:grocery_mobile_app/feature/order/widget/my_card.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({Key? key}) : super(key: key);

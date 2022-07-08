@@ -19,8 +19,12 @@ class CardNotif extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 12),
-      padding: const EdgeInsets.all(18),
+      margin: const EdgeInsets.only(
+        top: 12,
+      ),
+      padding: const EdgeInsets.all(
+        18,
+      ),
       width: double.infinity,
       color: keyWhiteColor,
       child: Row(
@@ -51,14 +55,16 @@ class CardNotif extends StatelessWidget {
                           style: grayTextStyle,
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 7),
+                          margin: const EdgeInsets.only(
+                            left: 7,
+                          ),
                           height: 10,
                           width: 10,
                           decoration: BoxDecoration(
                             color: keyGreenColor,
                             shape: BoxShape.circle,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -71,7 +77,9 @@ class CardNotif extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: blackTextStyle.copyWith(fontWeight: bold),
+                        style: blackTextStyle.copyWith(
+                          fontWeight: bold,
+                        ),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

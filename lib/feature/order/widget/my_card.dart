@@ -18,8 +18,10 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var format =
-        NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'USD');
+    var format = NumberFormat.simpleCurrency(
+      locale: Platform.localeName,
+      name: 'USD',
+    );
     return Center(
       child: Container(
         margin: const EdgeInsets.only(
@@ -31,7 +33,9 @@ class MyCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: keyWhiteColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(
+            12,
+          ),
         ),
         child: Row(
           children: [
@@ -67,7 +71,7 @@ class MyCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${format.currencySymbol} ${price}",
+                        "${format.currencySymbol} $price",
                         style: blackTextStyle.copyWith(
                           fontWeight: bold,
                         ),
@@ -84,7 +88,7 @@ class MyCard extends StatelessWidget {
                 ],
               ),
             ),
-            // Add Data
+
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

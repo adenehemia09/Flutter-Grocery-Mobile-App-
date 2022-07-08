@@ -60,10 +60,14 @@ class CardADS extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.77,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(
+          12,
+        ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(
+          15.0,
+        ),
         child: Row(
           children: [
             Column(
@@ -72,7 +76,9 @@ class CardADS extends StatelessWidget {
                 Text(
                   "Up to 30% offer!",
                   style: blackTextStyle.copyWith(
-                      fontWeight: extraBold, fontSize: 16),
+                    fontWeight: extraBold,
+                    fontSize: 16,
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -106,7 +112,6 @@ class CardADS extends StatelessWidget {
                 )
               ],
             ),
-            //Imagge
             BlocBuilder<GridCubit, int>(
               builder: (context, index) {
                 return image(index);
