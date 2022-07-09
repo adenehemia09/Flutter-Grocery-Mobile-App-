@@ -16,6 +16,15 @@ class NotificationModel {
   });
 }
 
+/*
+1. Waiting payment
+2. Success transaction
+3. Sent Order
+
+*/
+
+var newNotificationList = [];
+
 var notificationModelList = [
   const NotificationModel(
     icon: Icons.email,

@@ -4,6 +4,7 @@ import 'package:grocery_mobile_app/feature/detitle/controller/count_item_cubit.d
 import 'package:grocery_mobile_app/feature/detitle/controller/count_price_cubit.dart';
 import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
+import 'package:grocery_mobile_app/feature/order/controller/status_klik.dart';
 import 'package:grocery_mobile_app/feature/splash/page/splash_page.dart';
 
 void main() {
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CountPriceCubit(),
+        ),
+        BlocProvider(
+          create: (context) => StatusClickCard(),
         ),
       ],
       child: MaterialApp(

@@ -30,21 +30,6 @@ class _DetitleCardState extends State<DetitleCard> {
     var format =
         NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'USD');
 
-    Widget background() {
-      return Container(
-        height: 250,
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage(
-              "assets/bacround.png",
-            ),
-          ),
-        ),
-      );
-    }
-
     Widget buttomAppBar() {
       return Container(
         color: keyGreenColor,
@@ -321,9 +306,10 @@ class _DetitleCardState extends State<DetitleCard> {
                       MyCardModel(
                         image: widget.vegetableModel.image,
                         title: widget.vegetableModel.title,
-                        type: "",
+                        type: widget.vegetableModel.type,
                         price: widget.vegetableModel.price,
                         count: context.read<CountItemCubit>().state,
+                        id: "Trans_${widget.vegetableModel.id}",
                       ),
                     );
                     statusMassege("Successfully added item to cart");

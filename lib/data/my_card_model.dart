@@ -1,11 +1,13 @@
 class MyCardModel {
+  late String id;
   final String image;
   final String title;
   final String type;
-  final double price;
-  final int count;
+  late double price;
+  late int count;
 
-  const MyCardModel({
+  MyCardModel({
+    required this.id,
     required this.image,
     required this.title,
     required this.type,

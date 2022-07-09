@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
-import 'package:grocery_mobile_app/feature/order/widget/calculate_price.dart';
 import 'package:grocery_mobile_app/feature/order/widget/my_card.dart';
 
-class FavouritePage extends StatelessWidget {
+class FavouritePage extends StatefulWidget {
   const FavouritePage({Key? key}) : super(key: key);
+
+  @override
+  State<FavouritePage> createState() => _FavouritePageState();
+}
+
+class _FavouritePageState extends State<FavouritePage> {
+  late List data;
+
+  @override
+  void initState() {
+    data = myCardList.map((e) => e.price).toList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,39 +73,11 @@ class FavouritePage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 top: 120,
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        Column(
-                          children: myCardList.map(
-                            (e) {
-                              return MyCard(
-                                image: e.image,
-                                title: e.title,
-                                type: e.type,
-                                price: e.price,
-                                count: e.count,
-                              );
-                            },
-                          ).toList(),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        myCardList.isEmpty
-                            ? const SizedBox()
-                            : const CalculatePrice(),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              child: SingleChildScrollView(child: MyCard()),
             ),
           ],
         ),

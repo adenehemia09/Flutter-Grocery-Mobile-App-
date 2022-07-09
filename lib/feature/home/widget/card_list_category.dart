@@ -113,7 +113,7 @@ class CardListCategory extends StatelessWidget {
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    duration: Duration(seconds: 2, microseconds: 500),
+                    duration: const Duration(seconds: 2, microseconds: 500),
                     backgroundColor: keyTransparentColor,
                     elevation: 0,
                     behavior: SnackBarBehavior.floating,
