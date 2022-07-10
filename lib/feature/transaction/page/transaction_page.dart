@@ -10,22 +10,11 @@ import 'package:grocery_mobile_app/feature/success/page/success_pay.dart';
 import 'package:intl/intl.dart';
 
 class TransactionPage extends StatelessWidget {
-  const TransactionPage({Key? key}) : super(key: key);
+  final String totalPrice;
+  const TransactionPage({Key? key, required this.totalPrice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    late List dataPrice = myCardList.map((e) => e.price).toList();
-    late List data = myCardList;
-
-    double total = 0;
-    var f = NumberFormat("###.0#", "en_US");
-
-    var format =
-        NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'USD');
-
-    for (var i = 0; i < data.length; i++) {
-      total += (dataPrice[i] - (dataPrice[i] * 0.3));
-    }
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -165,7 +154,7 @@ class TransactionPage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "${format.currencySymbol}${f.format(total + 25)}",
+                                  totalPrice,
                                   style: blackTextStyle.copyWith(
                                     fontWeight: bold,
                                     fontSize: 16,

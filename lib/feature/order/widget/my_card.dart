@@ -51,68 +51,232 @@ class _MyCardState extends State<MyCard> {
 
     return Column(
       children: [
-        Column(
-          children: data.map(
-            (e) {
-              return Center(
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    top: 15,
+        data.length == 0
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height - 620,
                   ),
-                  width: MediaQuery.of(context).size.width - 48,
-                  padding: const EdgeInsets.all(
-                    10,
-                  ),
-                  decoration: BoxDecoration(
-                    color: keyWhiteColor,
-                    borderRadius: BorderRadius.circular(
-                      12,
+                  Image(
+                    width: MediaQuery.of(context).size.width - 160,
+                    image: const NetworkImage(
+                      "https://firebasestorage.googleapis.com/v0/b/grocery-apps-mobile.appspot.com/o/Food_delivery_cute_man_riding_motorcycles_cartoon_art_illustration-removebg-preview.png?alt=media&token=c06e03bc-8461-49e8-8cd7-23640427220d",
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              e.image,
-                            ),
-                          ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "You haven't placed an order yet.",
+                    style: blackTextStyle.copyWith(
+                      fontWeight: bold,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(
+                      top: 20,
+                      left: 24,
+                      right: 24,
+                    ),
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: keyGreenColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Order Now",
+                        style: whiteTextStyle.copyWith(
+                          fontWeight: bold,
                         ),
                       ),
-                      // Keterangan
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                  ),
+                ],
+              )
+            : Column(
+                children: data.map(
+                  (e) {
+                    return Center(
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                          top: 15,
+                        ),
+                        width: MediaQuery.of(context).size.width - 48,
+                        padding: const EdgeInsets.all(
+                          10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: keyWhiteColor,
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                        ),
+                        child: Row(
                           children: [
-                            Text(
-                              e.title,
-                              style: blackTextStyle.copyWith(
-                                fontWeight: bold,
-                                fontSize: 17,
-                              ),
-                            ),
-                            Text(
-                              e.type,
-                              style: blackTextStyle.copyWith(
-                                fontWeight: medium,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "${format.currencySymbol} ${f.format(e.price)}",
-                                  style: blackTextStyle.copyWith(
-                                    fontWeight: bold,
+                            Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    e.image,
                                   ),
                                 ),
-                                Text(
-                                  "/${e.count}Kg",
-                                  style: grayTextStyle.copyWith(
-                                    fontWeight: medium,
-                                    fontSize: 12,
+                              ),
+                            ),
+                            // Keterangan
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    e.title,
+                                    style: blackTextStyle.copyWith(
+                                      fontWeight: bold,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                  Text(
+                                    e.type,
+                                    style: blackTextStyle.copyWith(
+                                      fontWeight: medium,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "${format.currencySymbol} ${f.format(e.price)}",
+                                        style: blackTextStyle.copyWith(
+                                          fontWeight: bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "/${e.count}Kg",
+                                        style: grayTextStyle.copyWith(
+                                          fontWeight: medium,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    var count = e.count;
+                                    updateList(e.id, count + 1);
+                                    setState(
+                                      () {
+                                        dataPrice = myCardList
+                                            .map((e) => e.price)
+                                            .toList();
+                                      },
+                                    );
+                                    var price = e.price;
+                                    var count2 = e.count;
+                                    updatePrice(e.id, (price / count) * count2);
+                                    setState(
+                                      () {
+                                        dataPrice = myCardList
+                                            .map(
+                                              (e) => e.price,
+                                            )
+                                            .toList();
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: BoxDecoration(
+                                      color: keyGreenColor,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.add,
+                                        color: keyWhiteColor,
+                                        size: 13,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                context.read<StatusClickCard>().state == true
+                                    ? Text(
+                                        "${context.watch<CountItemCubit>().state}Kg",
+                                        style: blackTextStyle.copyWith(
+                                          fontWeight: bold,
+                                          fontSize: 12,
+                                        ),
+                                      )
+                                    : Text(
+                                        "${e.count}Kg",
+                                        style: blackTextStyle.copyWith(
+                                          fontWeight: bold,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                GestureDetector(
+                                  onTap: () {
+                                    var count = e.count;
+                                    if (count > 1) {
+                                      updateList(e.id, count - 1);
+                                      setState(
+                                        () {
+                                          dataPrice = myCardList
+                                              .map((e) => e.price)
+                                              .toList();
+                                        },
+                                      );
+                                      var price = e.price;
+                                      var count2 = e.count;
+
+                                      updatePrice(
+                                          e.id, (price / count) * count2);
+                                      setState(
+                                        () {
+                                          dataPrice = myCardList
+                                              .map((e) => e.price)
+                                              .toList();
+                                        },
+                                      );
+                                    } else if (count == 1) {
+                                      deleteItem(
+                                        e.id,
+                                      );
+                                      setState(
+                                        () {
+                                          dataPrice = myCardList
+                                              .map((e) => e.price)
+                                              .toList();
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: const BoxDecoration(
+                                      color: Color(
+                                        0xffE2F4E9,
+                                      ),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: keyGreenColor,
+                                        size: 13,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -120,124 +284,10 @@ class _MyCardState extends State<MyCard> {
                           ],
                         ),
                       ),
-
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              var count = e.count;
-                              updateList(e.id, count + 1);
-                              setState(
-                                () {
-                                  dataPrice =
-                                      myCardList.map((e) => e.price).toList();
-                                },
-                              );
-                              var price = e.price;
-                              var count2 = e.count;
-                              updatePrice(e.id, (price / count) * count2);
-                              setState(
-                                () {
-                                  dataPrice = myCardList
-                                      .map(
-                                        (e) => e.price,
-                                      )
-                                      .toList();
-                                },
-                              );
-                            },
-                            child: Container(
-                              height: 20,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                color: keyGreenColor,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.add,
-                                  color: keyWhiteColor,
-                                  size: 13,
-                                ),
-                              ),
-                            ),
-                          ),
-                          context.read<StatusClickCard>().state == true
-                              ? Text(
-                                  "${context.watch<CountItemCubit>().state}Kg",
-                                  style: blackTextStyle.copyWith(
-                                    fontWeight: bold,
-                                    fontSize: 12,
-                                  ),
-                                )
-                              : Text(
-                                  "${e.count}Kg",
-                                  style: blackTextStyle.copyWith(
-                                    fontWeight: bold,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                          GestureDetector(
-                            onTap: () {
-                              var count = e.count;
-                              if (count > 1) {
-                                updateList(e.id, count - 1);
-                                setState(
-                                  () {
-                                    dataPrice =
-                                        myCardList.map((e) => e.price).toList();
-                                  },
-                                );
-                                var price = e.price;
-                                var count2 = e.count;
-
-                                updatePrice(e.id, (price / count) * count2);
-                                setState(
-                                  () {
-                                    dataPrice =
-                                        myCardList.map((e) => e.price).toList();
-                                  },
-                                );
-                              } else if (count == 1) {
-                                deleteItem(
-                                  e.id,
-                                );
-                                setState(
-                                  () {
-                                    dataPrice =
-                                        myCardList.map((e) => e.price).toList();
-                                  },
-                                );
-                              }
-                            },
-                            child: Container(
-                              height: 20,
-                              width: 20,
-                              decoration: const BoxDecoration(
-                                color: Color(
-                                  0xffE2F4E9,
-                                ),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.remove,
-                                  color: keyGreenColor,
-                                  size: 13,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ).toList(),
-        ),
+                    );
+                  },
+                ).toList(),
+              ),
         const SizedBox(
           height: 20,
         ),

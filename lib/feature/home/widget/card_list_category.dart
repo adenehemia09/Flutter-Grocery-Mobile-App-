@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/category_model.dart';
+import 'package:grocery_mobile_app/data/my_card_model.dart';
+import 'package:grocery_mobile_app/feature/detitle/controller/count_item_cubit.dart';
 import 'package:grocery_mobile_app/feature/detitle/detitle_cart.dart';
 
 import 'package:intl/intl.dart';
@@ -111,6 +114,17 @@ class CardListCategory extends StatelessWidget {
             alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: () {
+                myCardList.insert(
+                  0,
+                  MyCardModel(
+                    image: vegetableModel.image,
+                    title: vegetableModel.title,
+                    type: vegetableModel.type,
+                    price: vegetableModel.price,
+                    count: context.read<CountItemCubit>().state,
+                    id: "Trans_${vegetableModel.id}",
+                  ),
+                );
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     duration: const Duration(seconds: 2, microseconds: 500),

@@ -77,7 +77,9 @@ class _FavouritePageState extends State<FavouritePage> {
               padding: EdgeInsets.only(
                 top: 120,
               ),
-              child: SingleChildScrollView(child: MyCard()),
+              child: SingleChildScrollView(
+                child: MyCard(),
+              ),
             ),
           ],
         ),

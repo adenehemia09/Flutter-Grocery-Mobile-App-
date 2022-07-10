@@ -67,7 +67,10 @@ class CosttomButttomPay extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TransactionPage(),
+                      builder: (context) => TransactionPage(
+                        totalPrice:
+                            "${format.currencySymbol}${f.format(total + 25)}",
+                      ),
                     ),
                   );
                   myCardList.clear();

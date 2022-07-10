@@ -66,11 +66,13 @@ class PayMentPage extends StatelessWidget {
               const DataAnddress(),
               const ShippingDetitle(),
               Column(
-                children: myCardList.map((e) {
-                  return CardItems(
-                    myCardModel: e,
-                  );
-                }).toList(),
+                children: myCardList.map(
+                  (e) {
+                    return CardItems(
+                      myCardModel: e,
+                    );
+                  },
+                ).toList(),
               ),
             ],
           ),

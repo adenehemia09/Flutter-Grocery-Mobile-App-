@@ -51,19 +51,27 @@ class _NotificationPageState extends State<NotificationPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: newNotificationList.map(
-            (e) {
-              return CardNotif(
-                messageType: e.messageType,
-                title: e.title,
-                message: e.message,
-                date: e.date,
-                icon: e.icon,
-              );
-            },
-          ).toList(),
-        ),
+        child: newNotificationList.isEmpty
+            ? SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: Text("you don't have Notification"),
+                ),
+              )
+            : Column(
+                children: newNotificationList.map(
+                  (e) {
+                    return CardNotif(
+                      messageType: e.messageType,
+                      title: e.title,
+                      message: e.message,
+                      date: e.date,
+                      icon: e.icon,
+                    );
+                  },
+                ).toList(),
+              ),
       ),
     );
   }
