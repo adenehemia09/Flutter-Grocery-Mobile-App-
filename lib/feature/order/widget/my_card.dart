@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
 import 'package:grocery_mobile_app/feature/detitle/controller/count_item_cubit.dart';
+import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
+import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
 import 'package:grocery_mobile_app/feature/order/controller/status_klik.dart';
 import 'package:grocery_mobile_app/feature/payment/page/payment_page.dart';
 import 'package:intl/intl.dart';
@@ -51,7 +53,7 @@ class _MyCardState extends State<MyCard> {
 
     return Column(
       children: [
-        data.length == 0
+        data.isEmpty
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -73,23 +75,29 @@ class _MyCardState extends State<MyCard> {
                       fontWeight: bold,
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: 20,
-                      left: 24,
-                      right: 24,
-                    ),
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: keyGreenColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Order Now",
-                        style: whiteTextStyle.copyWith(
-                          fontWeight: bold,
+                  GestureDetector(
+                    onTap: () {
+                      context.read<PageCubit>().setPage(0);
+                      context.read<GridCubit>().setPage(0);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                        left: 24,
+                        right: 24,
+                      ),
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: keyGreenColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Order Now",
+                          style: whiteTextStyle.copyWith(
+                            fontWeight: bold,
+                          ),
                         ),
                       ),
                     ),
@@ -453,9 +461,11 @@ class _MyCardState extends State<MyCard> {
   void updateList(String id, int count) {
     var index = myCardList.indexWhere((myCardList) => myCardList.id == id);
     if (index > -1) {
-      setState(() {
-        myCardList[index].count = count;
-      });
+      setState(
+        () {
+          myCardList[index].count = count;
+        },
+      );
     }
   }
 
@@ -465,9 +475,11 @@ class _MyCardState extends State<MyCard> {
   ) {
     var index = myCardList.indexWhere((myCardList) => myCardList.id == id);
     if (index > -1) {
-      setState(() {
-        myCardList[index].price = price;
-      });
+      setState(
+        () {
+          myCardList[index].price = price;
+        },
+      );
     }
   }
 
@@ -476,9 +488,11 @@ class _MyCardState extends State<MyCard> {
   ) {
     var index = myCardList.indexWhere((user) => user.id == id);
     if (index > -1) {
-      setState(() {
-        myCardList.removeAt(index);
-      });
+      setState(
+        () {
+          myCardList.removeAt(index);
+        },
+      );
     }
   }
 }

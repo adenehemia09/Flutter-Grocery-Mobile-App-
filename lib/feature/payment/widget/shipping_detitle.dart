@@ -99,7 +99,7 @@ class ShippingDetitle extends StatelessWidget {
                 ),
               ),
               Text(
-                "${format.currencySymbol}25.00",
+                "${format.currencySymbol}5",
                 style: blackTextStyle.copyWith(
                   fontWeight: medium,
                   fontSize: 13,
@@ -118,7 +118,7 @@ class ShippingDetitle extends StatelessWidget {
                 ),
               ),
               Text(
-                "${format.currencySymbol}${f.format(total + 25)}",
+                "${format.currencySymbol}${f.format(total + 5)}",
                 style: blackTextStyle.copyWith(
                   fontWeight: medium,
                   fontSize: 13,

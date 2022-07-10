@@ -48,7 +48,7 @@ class CosttomButttomPay extends StatelessWidget {
                 ),
               ),
               Text(
-                "${format.currencySymbol}${f.format(total + 25)}",
+                "${format.currencySymbol}${f.format(total + 5)}",
                 style: blackTextStyle.copyWith(
                   fontWeight: bold,
                   fontSize: 13,
@@ -69,7 +69,7 @@ class CosttomButttomPay extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => TransactionPage(
                         totalPrice:
-                            "${format.currencySymbol}${f.format(total + 25)}",
+                            "${format.currencySymbol}${f.format(total + 5)}",
                       ),
                     ),
                   );

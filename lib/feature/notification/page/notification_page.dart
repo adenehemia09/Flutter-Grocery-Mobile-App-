@@ -41,6 +41,47 @@ class _NotificationPageState extends State<NotificationPage> {
                 setState(() {
                   newNotif = newNotificationList.map((e) => e).toList();
                 });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: const Duration(seconds: 2, microseconds: 500),
+                    backgroundColor: keyTransparentColor,
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    content: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.70,
+                      ),
+                      padding: const EdgeInsets.all(
+                        14,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(
+                          0xffE2F4E9,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.check_circle,
+                              color: keyGreenColor,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Success delete your notification",
+                              style: blackTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
               },
               child: const Icon(
                 Icons.delete,
@@ -54,9 +95,12 @@ class _NotificationPageState extends State<NotificationPage> {
         child: newNotificationList.isEmpty
             ? SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
-                  child: Text("you don't have Notification"),
+                  child: Text(
+                    "you don't have Notification",
+                    style: blackTextStyle,
+                  ),
                 ),
               )
             : Column(
