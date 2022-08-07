@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/notification_model.dart';
+import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
 import 'package:grocery_mobile_app/feature/main/page/main_page.dart';
 
@@ -21,6 +21,7 @@ class _SuccessPayState extends State<SuccessPay> {
         const Duration(
           seconds: 3,
         ), () {
+      context.read<GridCubit>().setPage(0);
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -30,9 +31,9 @@ class _SuccessPayState extends State<SuccessPay> {
       );
       newNotificationList.insert(
         0,
-        const NotificationModel(
+        NotificationModel(
           icon: Icons.email,
-          date: '7 juni, 24:00',
+          date: "${DateTime.now()}",
           messageType: 'Info',
           title: "Your order will be sent immediately by courier.",
           message:
@@ -40,6 +41,7 @@ class _SuccessPayState extends State<SuccessPay> {
         ),
       );
     });
+    context.read<GridCubit>().setPage(0);
     context.read<PageCubit>().setPage(0);
     super.initState();
   }
