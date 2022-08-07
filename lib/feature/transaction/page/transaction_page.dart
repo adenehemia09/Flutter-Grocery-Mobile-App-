@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
-import 'package:grocery_mobile_app/data/my_card_model.dart';
 import 'package:grocery_mobile_app/data/notification_model.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
 import 'package:grocery_mobile_app/feature/main/page/main_page.dart';
@@ -15,6 +13,7 @@ class TransactionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var outputFormat = DateFormat('MM-dd-yyyy hh:mm a');
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -35,7 +34,7 @@ class TransactionPage extends StatelessWidget {
               ),
             ),
             Text(
-              "Minggu, 10 Juli 2022 17:17",
+              outputFormat.format(DateTime.parse(DateTime.now().toString())),
               style: blackTextStyle.copyWith(
                 fontWeight: bold,
                 fontSize: 16,
@@ -47,7 +46,6 @@ class TransactionPage extends StatelessWidget {
                 right: 20,
                 top: 20,
               ),
-              //padding: const EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
@@ -101,7 +99,7 @@ class TransactionPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Nomor Virtual Account",
+                                  "Virtual Account Number",
                                   style: grayTextStyle.copyWith(
                                     fontWeight: medium,
                                     fontSize: 13,
@@ -116,24 +114,74 @@ class TransactionPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Salin",
-                                  style: greenTextStyle.copyWith(
-                                    fontWeight: bold,
-                                    fontSize: 13,
+                            GestureDetector(
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    duration: const Duration(
+                                      seconds: 2,
+                                      microseconds: 500,
+                                    ),
+                                    backgroundColor: keyTransparentColor,
+                                    elevation: 0,
+                                    behavior: SnackBarBehavior.floating,
+                                    content: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      margin: EdgeInsets.only(
+                                        bottom:
+                                            MediaQuery.of(context).size.height *
+                                                0.82,
+                                      ),
+                                      padding: const EdgeInsets.all(
+                                        14,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: const Color(
+                                          0xffE2F4E9,
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Center(
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.check_circle,
+                                              color: keyGreenColor,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              "Copy",
+                                              style: blackTextStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.content_copy,
-                                  size: 14,
-                                  color: keyGreenColor,
-                                )
-                              ],
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Copy",
+                                    style: greenTextStyle.copyWith(
+                                      fontWeight: bold,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Icon(
+                                    Icons.content_copy,
+                                    size: 14,
+                                    color: keyGreenColor,
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -226,9 +274,9 @@ class TransactionPage extends StatelessWidget {
                         );
                         newNotificationList.insert(
                           0,
-                          const NotificationModel(
+                          NotificationModel(
                             icon: Icons.lock,
-                            date: '7 juni, 24:00',
+                            date: "${DateTime.now()}",
                             messageType: 'Transaction',
                             title: "Successful transaction",
                             message:
