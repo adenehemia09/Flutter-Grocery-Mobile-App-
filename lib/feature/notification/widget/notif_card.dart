@@ -22,7 +22,7 @@ class CardNotif extends StatelessWidget {
     var outputFormat = DateFormat('MM-dd-yyyy hh:mm a');
     return Container(
       margin: const EdgeInsets.only(
-        top: 12,
+        bottom: 12,
       ),
       padding: const EdgeInsets.all(
         18,
