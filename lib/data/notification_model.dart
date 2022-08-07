@@ -16,38 +16,11 @@ class NotificationModel {
   });
 }
 
-/*
-1. Waiting payment
-2. Success transaction
-3. Sent Order
-
-*/
-
-var newNotificationList = [];
-
-var notificationModelList = [
-  const NotificationModel(
-    icon: Icons.email,
-    date: '7 juni, 24:00',
-    messageType: 'Info',
-    title: "Your 1 kg tomato order will be sent immediately by courier.",
-    message:
-        "Your order has been successful and will be sent by courier to your home.",
-  ),
-  const NotificationModel(
-    icon: Icons.lock,
-    date: '7 juni, 24:00',
-    messageType: 'Transaction',
-    title: "Successful transaction",
-    message:
-        "Your order has been successful and will be sent by courier to your home.",
-  ),
-  const NotificationModel(
-    icon: Icons.update,
-    date: '7 juni, 24:00',
-    messageType: 'Info',
-    title: "Waiting for payment",
-    message:
-        "We need payment confirmation from you, please click the confirm button.",
-  ),
+var newNotificationList = [
+  /*
+      1. Add Item
+      2. Waiting payment
+      3. Success transaction
+      4. Sent Order
+  */
 ];

@@ -10,6 +10,8 @@ import 'package:grocery_mobile_app/feature/home/widget/fruits_grid.dart';
 import 'package:grocery_mobile_app/feature/home/widget/search.dart';
 import 'package:grocery_mobile_app/feature/home/widget/vegetables_grid.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/controller/status_notif_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/widget/icon_notif.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -79,21 +81,12 @@ class HomePage extends StatelessWidget {
               ],
             ),
             GestureDetector(
-              onTap: () => context.read<PageCubit>().setPage(2),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.notifications,
-                  ),
-                ),
-              ),
-            )
+              onTap: () {
+                context.read<PageCubit>().setPage(2);
+                context.read<StatusNotifCubit>().setPage(false);
+              },
+              child: const IconNotif(),
+            ),
           ],
         ),
       );

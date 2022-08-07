@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/controller/status_notif_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/widget/icon_notif.dart';
 import 'package:grocery_mobile_app/feature/order/widget/my_card.dart';
 
 class FavouritePage extends StatefulWidget {
@@ -45,20 +47,9 @@ class _FavouritePageState extends State<FavouritePage> {
                         GestureDetector(
                           onTap: () {
                             context.read<PageCubit>().setPage(2);
+                            context.read<StatusNotifCubit>().setPage(false);
                           },
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Center(
-                              child: Icon(
-                                Icons.notifications,
-                              ),
-                            ),
-                          ),
+                          child: const IconNotif(),
                         ),
                       ],
                     ),

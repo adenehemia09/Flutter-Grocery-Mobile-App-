@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
+import 'package:intl/intl.dart';
 
 class CardNotif extends StatelessWidget {
   final String messageType;
@@ -18,6 +19,7 @@ class CardNotif extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var outputFormat = DateFormat('MM-dd-yyyy hh:mm a');
     return Container(
       margin: const EdgeInsets.only(
         top: 12,
@@ -51,7 +53,7 @@ class CardNotif extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          date,
+                          outputFormat.format(DateTime.parse(date)),
                           style: grayTextStyle,
                         ),
                         Container(

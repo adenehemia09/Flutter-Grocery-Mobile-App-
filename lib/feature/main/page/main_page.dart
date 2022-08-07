@@ -4,6 +4,7 @@ import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/feature/home/controller/grid_cubit.dart';
 import 'package:grocery_mobile_app/feature/home/page/home_page.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/controller/status_notif_cubit.dart';
 import 'package:grocery_mobile_app/feature/notification/page/notification_page.dart';
 import 'package:grocery_mobile_app/feature/order/page/favourite_page.dart';
 import 'package:grocery_mobile_app/feature/user/page/profile_page.dart';
@@ -49,6 +50,8 @@ class _MainPageState extends State<MainPage> {
           context.read<PageCubit>().setPage(index);
           if (index == 0) {
             context.read<GridCubit>().setPage(0);
+          } else if (index == 2) {
+            context.read<StatusNotifCubit>().setPage(false);
           }
         },
         child: SizedBox(

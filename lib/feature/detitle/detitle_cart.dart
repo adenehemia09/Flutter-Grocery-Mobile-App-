@@ -4,10 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/category_model.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
+import 'package:grocery_mobile_app/data/notification_model.dart';
 import 'package:grocery_mobile_app/feature/detitle/controller/count_item_cubit.dart';
 import 'package:grocery_mobile_app/feature/detitle/controller/count_price_cubit.dart';
 import 'package:grocery_mobile_app/feature/main/page/main_page.dart';
 import 'package:grocery_mobile_app/feature/main/controller/page_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/controller/status_notif_cubit.dart';
+import 'package:grocery_mobile_app/feature/notification/widget/icon_notif.dart';
 import 'package:intl/intl.dart';
 
 class DetitleCard extends StatefulWidget {
@@ -33,6 +36,7 @@ class _DetitleCardState extends State<DetitleCard> {
     Widget buttomAppBar() {
       return Container(
         color: keyGreenColor,
+        padding: const EdgeInsets.only(left: 20, right: 20),
         height: 70,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,8 +47,8 @@ class _DetitleCardState extends State<DetitleCard> {
                 context.read<CountItemCubit>().setPage(1);
               },
               child: Container(
-                height: 30,
-                width: 30,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
                   color: keyWhiteColor,
                   shape: BoxShape.circle,
@@ -67,6 +71,7 @@ class _DetitleCardState extends State<DetitleCard> {
             ),
             GestureDetector(
               onTap: () {
+                context.read<StatusNotifCubit>().setPage(false);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -74,22 +79,12 @@ class _DetitleCardState extends State<DetitleCard> {
                   ),
                 );
                 context.read<PageCubit>().setPage(2);
+                context.read<CountItemCubit>().setPage(1);
+                context.read<CountPriceCubit>().setPage(
+                      widget.vegetableModel.price,
+                    );
               },
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: keyWhiteColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.notifications,
-                    color: keyGrayColor,
-                    size: 20,
-                  ),
-                ),
-              ),
+              child: const IconNotif(),
             ),
           ],
         ),
@@ -112,7 +107,11 @@ class _DetitleCardState extends State<DetitleCard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 20,
+            ),
             child: Column(
               children: [
                 Row(
@@ -278,15 +277,19 @@ class _DetitleCardState extends State<DetitleCard> {
 
     return Scaffold(
       backgroundColor: bacgroundColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: keyGreenColor,
-        title: buttomAppBar(),
-        elevation: 0,
-      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: content(),
+        child: Stack(
+          children: [
+            buttomAppBar(),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 70,
+              ),
+              child: SingleChildScrollView(
+                child: content(),
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: Container(
@@ -312,15 +315,35 @@ class _DetitleCardState extends State<DetitleCard> {
                         id: "Trans_${widget.vegetableModel.id}",
                       ),
                     );
-                    statusMassege("Successfully added item to cart");
+                    statusMassege(
+                      "Successfully added item to cart",
+                    );
+                    newNotificationList.insert(
+                      0,
+                      NotificationModel(
+                        icon: Icons.email,
+                        date: DateTime.now().toString(),
+                        messageType: 'Info',
+                        title:
+                            "Successfully added ${widget.vegetableModel.title} to card.",
+                        message:
+                            "You have successfully added items to the card.",
+                      ),
+                    );
+                    context.read<StatusNotifCubit>().setPage(true);
                   } catch (e) {
-                    statusMassege("Failed added item to cart");
+                    statusMassege(
+                      "Failed added item to cart",
+                    );
                   }
                   context.read<CountPriceCubit>().setPage(
                         context.read<CountPriceCubit>().state /
                             context.read<CountItemCubit>().state,
                       );
                   context.read<CountItemCubit>().setPage(1);
+                  context.read<CountPriceCubit>().setPage(
+                        widget.vegetableModel.price,
+                      );
                 },
                 child: Container(
                   height: 50,
@@ -349,7 +372,10 @@ class _DetitleCardState extends State<DetitleCard> {
   void statusMassege(String massege) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 2, microseconds: 500),
+        duration: const Duration(
+          seconds: 2,
+          microseconds: 500,
+        ),
         backgroundColor: keyTransparentColor,
         elevation: 0,
         behavior: SnackBarBehavior.floating,

@@ -5,8 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/category_model.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
+import 'package:grocery_mobile_app/data/notification_model.dart';
 import 'package:grocery_mobile_app/feature/detitle/controller/count_item_cubit.dart';
 import 'package:grocery_mobile_app/feature/detitle/detitle_cart.dart';
+import 'package:grocery_mobile_app/feature/notification/controller/status_notif_cubit.dart';
 
 import 'package:intl/intl.dart';
 
@@ -23,7 +25,9 @@ class CardListCategory extends StatelessWidget {
       width: (MediaQuery.of(context).size.width * 0.5) - 24 - 10,
       height: 150,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(12)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Stack(
         children: [
           GestureDetector(
@@ -125,6 +129,18 @@ class CardListCategory extends StatelessWidget {
                     id: "Trans_${vegetableModel.id}",
                   ),
                 );
+                newNotificationList.insert(
+                  0,
+                  NotificationModel(
+                    icon: Icons.email,
+                    date: DateTime.now().toString(),
+                    messageType: 'Info',
+                    title:
+                        "Successfully added ${vegetableModel.title} to card.",
+                    message: "You have successfully added items to the card.",
+                  ),
+                );
+                context.read<StatusNotifCubit>().setPage(true);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     duration: const Duration(seconds: 2, microseconds: 500),

@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_mobile_app/config/theme.dart';
 import 'package:grocery_mobile_app/data/my_card_model.dart';
 import 'package:grocery_mobile_app/data/notification_model.dart';
+import 'package:grocery_mobile_app/feature/notification/controller/status_notif_cubit.dart';
 import 'package:grocery_mobile_app/feature/transaction/page/transaction_page.dart';
 import 'package:intl/intl.dart';
 
@@ -76,15 +77,16 @@ class CosttomButttomPay extends StatelessWidget {
                   myCardList.clear();
                   newNotificationList.insert(
                     0,
-                    const NotificationModel(
+                    NotificationModel(
                       icon: Icons.update,
-                      date: '7 juni, 24:00',
                       messageType: 'Info',
+                      date: "${DateTime.now()}",
                       title: "Waiting for payment",
                       message:
                           "We need payment confirmation from you, please click the confirm button.",
                     ),
                   );
+                  context.read<StatusNotifCubit>().setPage(true);
                 },
                 child: Container(
                   height: 45,
